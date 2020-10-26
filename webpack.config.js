@@ -49,22 +49,15 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {
-              name: 'templates/icons/[name].html.twig',
-            },
           },
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+              bypassOnDebug: true,
+              disable: true,
             },
           },
         ],
-      },
-      {
-        test: /modernizrrc\.js$/,
-        loader: 'expose-loader?Modernizr!webpack-modernizr-loader',
       },
       {
         test: /\.js$/,
@@ -123,7 +116,6 @@ module.exports = {
     }),
     new SVGSpritemapPlugin([
       path.resolve(__dirname, 'src/icons/**/*.svg'),
-      path.resolve(__dirname, 'node_modules/helsinki-design-system/packages/core/src/svg/**/*.svg')
     ], {
       output: {
         filename: './icons/sprite.svg',
@@ -141,11 +133,6 @@ module.exports = {
           view: '-view'
         }
       },
-      // styles: {
-      //   filename: path.resolve(__dirname, 'styles/helpers/_svg-sprite.scss'),
-        // Fragment does not yet work with Firefox with mask-image.
-        // format: 'fragment'
-      // }
     }),
     new MiniCssExtractPlugin({
       filename: 'css/styles.min.css',
